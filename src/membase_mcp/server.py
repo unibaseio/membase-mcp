@@ -28,6 +28,8 @@ using the Membase memory system. The server offers the following main functional
    - Maintains conversation history
 """
 
+import json
+import logging
 import os
 from typing import Literal
 import uuid
@@ -45,6 +47,9 @@ mcp = FastMCP(
 )
 
 membase_account = os.getenv("MEMBASE_ACCOUNT")
+if not membase_account or membase_account == "":
+    raise ValueError("MEMBASE_ACCOUNT is not set")
+
 membase_id = os.getenv("MEMBASE_ID")
 if not membase_id or membase_id == "":
     membase_id = str(uuid.uuid4())
@@ -100,7 +105,11 @@ def get_messages(recent_n: int = 8):
     Get the last n messages from the current conversation.
     '''
     global default_conversation_id, mm
-    return mm.get(default_conversation_id, recent_n)
+    res = mm.get(default_conversation_id, recent_n)
+    result = []
+    for msg in res:
+        result.append(msg.content)
+    return json.dumps(result)
 
 
 def main():

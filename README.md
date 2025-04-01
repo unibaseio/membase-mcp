@@ -2,10 +2,9 @@
 
 ## Description
 
-Membase is a core component of the Unibase ecosystem. It stores historical information, interaction records, and persistent data of Agents, ensuring their continuity and traceability.
+Unibase membase is the first decentralized memory layer for AI agents. It stores historical information, interaction records, and persistent data of agents, ensuring their continuity and traceability.
 
-The membase mcp server enables seamless integration with the membase protocol for decentralized storage. It provides functionality to upload memory to the Unibase DA network.
-
+The membase mcp server enables seamless integration with the membase protocol for decentralized storage. It provides functionality to upload and download memory to/from the Unibase DA network.
 
 ## Functions
 
@@ -30,7 +29,7 @@ uv run src/membase_mcp/server.py
 
 - MEMBASE_ACCOUNT: your account to upload
 - MEMBASE_CONVERSATION_ID: your conversation id, should be unique, will preload its history
-- MEMBASE_ID: your sub account
+- MEMBASE_ID: your instance id
 
 
 ## Configuration on Claude/Windsurf/Cursor/Cline
@@ -51,5 +50,14 @@ uv run src/membase_mcp/server.py
 }
 ```
 
+## Usage
 
+call functions in llm chat
 
++ get conversation id and switch conversation
+
+![get conversation id and switch conversation](./asset/switch.png)
+
++ save message and get messages
+
+![save message and get messages](./asset/save.png)
