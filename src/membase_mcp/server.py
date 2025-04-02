@@ -28,6 +28,7 @@ using the Membase memory system. The server offers the following main functional
    - Maintains conversation history
 """
 
+import argparse
 import json
 import logging
 import os
@@ -42,22 +43,34 @@ from membase.memory.multi_memory import MultiMemory
 
 load_dotenv()
 
+parser = argparse.ArgumentParser()
+parser.add_argument("--port", type=int, default=8000)
+parser.add_argument("--transport", type=str, default="stdio", choices=["stdio", "sse"])
+parser.add_argument("--log-level", type=str, default="INFO", choices=["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"])
+args = parser.parse_args()
+
 mcp = FastMCP(
-    "Membase MCP Server",
+    "Membase MCP Server", port=args.port, debug=True, log_level=args.log_level,
 )
 
 membase_account = os.getenv("MEMBASE_ACCOUNT")
 if not membase_account or membase_account == "":
     raise ValueError("MEMBASE_ACCOUNT is not set")
 
+logging.info(f"membase_account: {membase_account}")
+
 membase_id = os.getenv("MEMBASE_ID")
 if not membase_id or membase_id == "":
     membase_id = str(uuid.uuid4())
+
+logging.info(f"membase_id: {membase_id}")
 
 # Initialize default_conversation_id
 default_conversation_id = os.getenv("MEMBASE_CONVERSATION_ID")
 if not default_conversation_id:
     default_conversation_id = str(uuid.uuid4())
+
+logging.info(f"default_conversation_id: {default_conversation_id}")
 
 # Initialize MultiMemory
 mm = MultiMemory(
@@ -113,8 +126,8 @@ def get_messages(recent_n: int = 8):
 
 
 def main():
-    mcp.run(transport="stdio")
-
+    logging.info("Starting Membase MCP Server")
+    mcp.run(transport=args.transport)
 
 if __name__ == "__main__":
     main()
