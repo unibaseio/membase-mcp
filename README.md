@@ -39,7 +39,12 @@ uv run src/membase_mcp/server.py
   "mcpServers": {
     "membase": {
       "command": "uv",
-      "args": ["run", "path/to/membase_mcp"],
+      "args": [
+        "--directory",
+        "path/to/membase-mcp",
+        "run", 
+        "src/membase_mcp/server.py"
+      ],
       "env": {
         "MEMBASE_ACCOUNT": "your account, 0x...",
         "MEMBASE_CONVERSATION_ID": "your conversation id, should be unique",
