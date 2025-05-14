@@ -2,9 +2,9 @@
 
 ## Description
 
-Membase is the first decentralized memory layer for AI agents power by Unibase. It stores historical information, interaction records, and persistent data of agents, ensuring their continuity and traceability.
+Membase is the first decentralized memory layer for AI agents, powered by Unibase. It provides secure, persistent storage for conversation history, interaction records, and knowledge — ensuring agent continuity, personalization, and traceability.
 
-The membase mcp server enables seamless integration with the membase protocol for decentralized storage. It provides functionality to upload and download memory to/from the Unibase DA network.
+The Membase-MCP Server enables seamless integration with the Membase protocol, allowing agents to upload and retrieve memory from the Unibase DA network for decentralized, verifiable storage.
 
 ## Functions
 
