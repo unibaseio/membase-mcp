@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/unibaseio-membase-mcp-badge.png)](https://mseep.ai/app/unibaseio-membase-mcp)
+
 # membase mcp server
 
 ## Description
